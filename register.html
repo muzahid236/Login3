@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>Register</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(0, 246, 246);
+      }
+      form {
+        background: linear-gradient(to right, rgb(253, 253, 255),blue);
+        width: 350px;
+        padding: 20px;
+        box-shadow: 0 0 15px rgba(26, 25, 25, 0.1);
+      }
+      input {
+        transition: 0.2s;
+       border-radius: 10px;
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        box-sizing: border-box;
+        letter-spacing: 1.1px;
+      }
+      input:focus{
+      width: 360px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="registerForm">
+      <h2>Register</h2>
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="text" id="username" placeholder="Username" required />
+      <!-- <input type="email" id="email" placeholder="email" required /> -->
+      <input type="password" id="password" placeholder="Password" required />
+      <input type="password" id="confirmPassword" placeholder="Confirm Password"
+        required
+      />
+      <button style="width: 150px;height: 40px; border-radius: 7px;background-color: rgb(121, 214, 217);" type="submit">Register</button>
+      &nbsp;<a style="color: azure; position: relative; left: 90;font-size: 19;" href="login.html">Go to Login</a>
+    </form>
+
+    <script>
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const name = document.getElementById("name").value;
+          const username = document.getElementById("username").value;
+        //   const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword = document.getElementById("confirmPassword").value;
+          
+          if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+          }
+
+          const user = {
+            name: name,
+            username: username,
+            password: password,
+            // email: email,
+          
+          };
+
+          localStorage.setItem(username, JSON.stringify(user));
+          alert("Registration successful!.");
+          window.location.href = "login.html";
+        });
+    </script>
+  </body>
+</html>

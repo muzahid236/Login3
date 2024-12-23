@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>Home</title>
+    <head>
+      <style>
+      body {
+        margin-top: 270px;
+        font-size: 19px;
+        color: #ffffff;
+        background: linear-gradient(to right,rgb(255, 59, 92),rgb(255, 255, 255));
+      }
+      .hidden {
+        display: none;
+      }
+      h1 {
+        left: 510px;
+        position: relative;
+        text-align: center;
+        width: 500px;
+        min-height: 300px;
+        background: linear-gradient(to right, lightblue, blue, aqua);
+      }
+      #login{
+        color:yellow;
+        position: relative;
+        top: 130px;
+        right:90px; 
+        transition: 0.3s;
+      }
+      #login:hover{
+        text-decoration: underline;
+        color: rgb(193, 193, 255);
+      }
+      .err{
+        position: relative;
+        
+      }
+      #logoutButton{
+        left: 655px;
+        position: relative;
+        bottom: 99.9px;
+        height: 45px;
+        width: 230px;
+        border-radius: 10px;
+        background-color: rgb(245, 33, 33);
+        transition: 0.2s ease;
+      }
+      #logoutButton:hover{
+        background-color: rgb(249, 122, 122);
+      }
+      #logoutButton:active{
+        background-color: rgb(255, 0, 0);
+      }
+
+   </style>
+  </head>
+  <body>
+    <h1 class="err" id="welcomeMessage">Hello</h1>
+    <button id="logoutButton" class="hidden">Logout</button>
+    <script>
+      const user = localStorage.getItem("user");
+      if (user) {
+        const parsedUser = JSON.parse(user);
+        document.getElementById(
+          "welcomeMessage"
+        ).innerHTML = `Hello ${parsedUser.name}`;
+        document.getElementById("logoutButton").classList.remove("hidden");
+      } else {
+        document.getElementById(
+          "welcomeMessage"
+        ).innerHTML = `Hello, Please <a  href='login.html' id = 'login'>login Here</a>.`;
+      }
+
+      document
+        .getElementById("logoutButton")
+        .addEventListener("click", function () {
+          localStorage.removeItem("user");
+          window.location.href = "login.html";
+        });
+    </script>
+  </body>
+</html>
